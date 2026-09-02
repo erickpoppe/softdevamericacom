@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SoftDev America — Equipos de software que comparten tu jornada</title>
+<meta name="description" content="SoftDev America construye y escala ingeniería de producto desde Latinoamérica — ingenieros senior, tu zona horaria, dos idiomas." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #10141c;
+    --surface: #1a2130;
+    --surface-2: #212a3c;
+    --line: #2a3446;
+    --fg: #eaeef5;
+    --muted: #93a0b5;
+    --accent: #f2a65a;      /* warm amber — leads on the LatAm page */
+    --accent-2: #5ee6a8;    /* cool mint — the other America */
+    --accent-ink: #2a1704;
+    --maxw: 1080px;
+    --display: "Space Grotesk", system-ui, sans-serif;
+    --body: "IBM Plex Sans", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  a { color: inherit; text-decoration: none; }
+
+  header {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 86%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem;
+    letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px;
+  }
+  .brand .dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .nav-links { display: flex; gap: 30px; align-items: center; }
+  .nav-links a { color: var(--muted); font-size: 0.94rem; transition: color .18s; }
+  .nav-links a:hover { color: var(--fg); }
+  .lang-switch {
+    color: var(--muted); font-size: 0.88rem; border: 1px solid var(--line);
+    padding: 6px 12px; border-radius: 999px; transition: border-color .18s, color .18s;
+  }
+  .lang-switch:hover { color: var(--fg); border-color: var(--muted); }
+  .nav-toggle { display: none; background: none; border: 0; color: var(--fg); cursor: pointer; }
+
+  .hero { padding: 96px 0 72px; position: relative; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: center;
+  }
+  .kicker {
+    color: var(--accent); font-family: var(--display); font-weight: 500;
+    font-size: 0.98rem; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
+  }
+  .kicker::before {
+    content: ""; width: 26px; height: 2px; background: var(--accent); display: inline-block;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 600; letter-spacing: -0.025em;
+    font-size: clamp(2.4rem, 5.2vw, 3.9rem); line-height: 1.04; margin-bottom: 22px;
+  }
+  h1 .warm { color: var(--accent-2); }
+  .lede { color: var(--muted); font-size: 1.13rem; max-width: 48ch; margin-bottom: 34px; }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--display); font-weight: 500; font-size: 0.98rem;
+    padding: 13px 24px; border-radius: 10px; cursor: pointer; transition: transform .12s, background .18s, border-color .18s;
+    display: inline-flex; align-items: center; border: 1px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-primary:hover { background: color-mix(in srgb, var(--accent) 88%, white); transform: translateY(-1px); }
+  .btn-ghost { border-color: var(--line); color: var(--fg); }
+  .btn-ghost:hover { border-color: var(--muted); transform: translateY(-1px); }
+
+  .clocks {
+    background: linear-gradient(160deg, var(--surface), var(--surface-2));
+    border: 1px solid var(--line); border-radius: 18px; padding: 28px;
+  }
+  .clocks-head {
+    font-family: var(--display); font-size: 0.9rem; color: var(--muted);
+    margin-bottom: 22px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .live { display: flex; align-items: center; gap: 7px; color: var(--accent); }
+  .live .pulse {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+  }
+  .clock-row { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0; }
+  .clock-row + .clock-row { border-top: 1px solid var(--line); }
+  .city { display: flex; flex-direction: column; }
+  .city .name { font-family: var(--display); font-weight: 500; font-size: 1.05rem; }
+  .city .region { color: var(--muted); font-size: 0.84rem; }
+  .time { font-family: var(--display); font-weight: 600; font-size: 1.7rem; letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+  .time .ampm { font-size: 0.9rem; color: var(--muted); margin-left: 4px; }
+  .clock-foot {
+    margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 0.9rem; text-align: center;
+  }
+  .clock-foot strong { color: var(--fg); font-weight: 500; }
+
+  section { padding: 72px 0; }
+  .section-title {
+    font-family: var(--display); font-weight: 600; letter-spacing: -0.02em;
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem); margin-bottom: 12px;
+  }
+  .section-intro { color: var(--muted); max-width: 54ch; margin-bottom: 44px; font-size: 1.05rem; }
+
+  .services { border-top: 1px solid var(--line); }
+  .svc {
+    display: grid; grid-template-columns: 0.9fr 2fr; gap: 32px;
+    padding: 30px 0; border-top: 1px solid var(--line);
+  }
+  .svc:first-of-type { border-top: 0; }
+  .svc h3 { font-family: var(--display); font-weight: 500; font-size: 1.35rem; letter-spacing: -0.01em; }
+  .svc p { color: var(--muted); }
+  .svc .tags { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 0.82rem; color: var(--muted); border: 1px solid var(--line);
+    padding: 4px 11px; border-radius: 7px;
+  }
+
+  .approach { border-top: 1px solid var(--line); background: var(--surface); }
+  .approach-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 56px; margin-top: 8px; }
+  .point h4 { font-family: var(--display); font-weight: 500; font-size: 1.15rem; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .point h4 .mk { width: 8px; height: 8px; border-radius: 2px; background: var(--accent); flex: none; }
+  .point:nth-child(even) h4 .mk { background: var(--accent-2); }
+  .point p { color: var(--muted); font-size: 0.98rem; }
+
+  .contact { border-top: 1px solid var(--line); text-align: center; }
+  .contact .section-title { font-size: clamp(2rem, 4.4vw, 3rem); }
+  .contact .lede { margin: 0 auto 32px; text-align: center; }
+  .mail {
+    font-family: var(--display); font-size: clamp(1.1rem, 2.6vw, 1.5rem); font-weight: 500;
+    color: var(--accent); border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    padding-bottom: 3px; transition: border-color .2s;
+  }
+  .mail:hover { border-color: var(--accent); }
+
+  footer { border-top: 1px solid var(--line); padding: 34px 0; }
+  .foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; color: var(--muted); font-size: 0.88rem; }
+  .foot .brand { font-size: 1rem; }
+
+  .reveal { opacity: 0; transform: translateY(14px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .reveal.d1 { animation-delay: .06s; } .reveal.d2 { animation-delay: .14s; } .reveal.d3 { animation-delay: .22s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 60px 0 48px; }
+    .svc { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
+    .approach-grid { grid-template-columns: 1fr; gap: 30px; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; position: absolute; top: 68px; left: 0; right: 0;
+      flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--line); padding: 8px 24px 18px;
+    }
+    .nav-links.open a { padding: 12px 0; }
+    .nav-toggle { display: block; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    .live .pulse { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand"><span class="dot"></span>SoftDev America</a>
+    <nav class="nav-links" id="menu">
+      <a href="#work">Qué construimos</a>
+      <a href="#approach">Cómo trabajamos</a>
+      <a href="#contact">Contacto</a>
+      <a href="/us.html" class="lang-switch">English</a>
+    </nav>
+    <button class="nav-toggle" id="toggle" aria-label="Menú">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="kicker reveal">Ingeniería de software desde Latinoamérica</div>
+        <h1 class="reveal d1">Equipos de software que comparten tu <span class="warm">jornada</span>.</h1>
+        <p class="lede reveal d2">Construimos y escalamos ingeniería de producto desde el corazón de Latinoamérica — ingenieros senior que trabajan en tu horario, hablan tu idioma y entregan como si estuvieran al lado.</p>
+        <div class="cta-row reveal d3">
+          <a href="#contact" class="btn btn-primary">Empezar un proyecto</a>
+          <a href="#approach" class="btn btn-ghost">Cómo trabajamos</a>
+        </div>
+      </div>
+      <div class="clocks reveal d2">
+        <div class="clocks-head">
+          <span>Ahora mismo</span>
+          <span class="live"><span class="pulse"></span>en vivo</span>
+        </div>
+        <div class="clock-row">
+          <div class="city"><span class="name">La Paz</span><span class="region">Nuestro estudio · Bolivia</span></div>
+          <div class="time" id="t-lpz">—</div>
+        </div>
+        <div class="clock-row">
+          <div class="city"><span class="name">Nueva York</span><span class="region">Tu cliente · EE. UU.</span></div>
+          <div class="time" id="t-nyc">—</div>
+        </div>
+        <div class="clock-foot"><strong>Una sola jornada</strong> compartida en las Américas.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="work">
+    <div class="wrap">
+      <h2 class="section-title">Qué construimos</h2>
+      <p class="section-intro">Ingeniería de producto completa, desde el primer commit hasta la escala. Un solo equipo senior, sin cadenas de traspaso.</p>
+
+      <div class="svc">
+        <h3>Ingeniería de producto</h3>
+        <div>
+          <p>Aplicaciones web hechas para durar — desde un MVP desde cero hasta plataformas que sirven a millones. Nos hacemos cargo de la entrega de punta a punta, junto a tu equipo.</p>
+          <div class="tags"><span class="tag">React</span><span class="tag">Next.js</span><span class="tag">Node</span><span class="tag">Python</span></div>
+        </div>
+      </div>
+      <div class="svc">
+        <h3>Plataforma y APIs</h3>
+        <div>
+          <p>La columna vertebral del backend — servicios, modelos de datos e integraciones que se mantienen rápidos y observables mientras tu tráfico crece.</p>
+          <div class="tags"><span class="tag">Go</span><span class="tag">Postgres</span><span class="tag">AWS</span><span class="tag">Kubernetes</span></div>
+        </div>
+      </div>
+      <div class="svc">
+        <h3>Móvil</h3>
+        <div>
+          <p>Calidad nativa en iOS y Android desde una sola base de código, con una cadencia de entregas que tus usuarios notan.</p>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Swift</span><span class="tag">Kotlin</span></div>
+        </div>
+      </div>
+      <div class="svc">
+        <h3>Integración de IA</h3>
+        <div>
+          <p>Funciones con LLM que de verdad llegan a producción — recuperación, agentes y evaluación integrados en tu producto con las barreras necesarias para operar.</p>
+          <div class="tags"><span class="tag">RAG</span><span class="tag">Agentes</span><span class="tag">Evals</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach" id="approach">
+    <div class="wrap">
+      <h2 class="section-title">Un equipo, dos Américas</h2>
+      <p class="section-intro">La distancia está en el mapa, no en el trabajo. Así se siente trabajar con nosotros.</p>
+      <div class="approach-grid">
+        <div class="point">
+          <h4><span class="mk"></span>Tu zona horaria</h4>
+          <p>La Paz está a menos de una hora del horario del este de EE. UU. todo el año. Dailies, revisiones y llamadas ocurren en tiempo real — sin esperar respuestas al día siguiente.</p>
+        </div>
+        <div class="point">
+          <h4><span class="mk"></span>Dos idiomas, un estándar</h4>
+          <p>Español e inglés fluidos en todo el equipo. La documentación, el código y las conversaciones se entienden con claridad de ambos lados.</p>
+        </div>
+        <div class="point">
+          <h4><span class="mk"></span>Senior de base</h4>
+          <p>Trabajas directamente con ingenieros que ya han entregado a escala. Sin capas intermedias, sin juniors facturados como expertos.</p>
+        </div>
+        <div class="point">
+          <h4><span class="mk"></span>Transparencia por costumbre</h4>
+          <p>Tableros compartidos, repositorios abiertos y estimaciones honestas. Siempre sabes en qué punto está el trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Construyamos algo</h2>
+      <p class="lede">Cuéntanos qué estás creando. Te respondemos en un día hábil con una respuesta real, no un guion de ventas.</p>
+      <a href="mailto:hola@softdev-america.com" class="mail">hola@softdev-america.com</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span class="brand"><span class="dot"></span>SoftDev America</span>
+    <span>© 2026 SoftDev America · Ingeniería en las Américas</span>
+  </div>
+</footer>
+
+<script>
+  function fmt(tz) {
+    const d = new Intl.DateTimeFormat("es", {
+      timeZone: tz, hour: "numeric", minute: "2-digit", hour12: true
+    }).formatToParts(new Date());
+    let time = "", ampm = "";
+    for (const p of d) {
+      if (p.type === "hour" || p.type === "minute" || p.type === "literal") time += p.value;
+      if (p.type === "dayPeriod") ampm = p.value;
+    }
+    return { time: time.trim(), ampm };
+  }
+  function tick() {
+    const l = fmt("America/La_Paz");
+    const n = fmt("America/New_York");
+    document.getElementById("t-lpz").innerHTML = l.time + '<span class="ampm">' + l.ampm + '</span>';
+    document.getElementById("t-nyc").innerHTML = n.time + '<span class="ampm">' + n.ampm + '</span>';
+  }
+  tick(); setInterval(tick, 1000 * 15);
+
+  const toggle = document.getElementById("toggle");
+  const menu = document.getElementById("menu");
+  toggle.addEventListener("click", () => menu.classList.toggle("open"));
+  menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
+</script>
+</body>
+</html>
