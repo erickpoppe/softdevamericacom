@@ -21,6 +21,7 @@
     });
   }
 
+  // Reveal on scroll
   var els = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
     var observer = new IntersectionObserver(function(entries){
@@ -36,6 +37,7 @@
     els.forEach(function(el){ el.classList.add('in-view'); });
   }
 
+  // Contact form demo submit
   var contactForm = document.getElementById('contactForm');
   if(contactForm){
     contactForm.addEventListener('submit', function(e){
@@ -43,7 +45,7 @@
       var btn = document.getElementById('cfSubmit');
       var note = document.getElementById('cfNote');
       if(btn){ btn.textContent = 'Message Sent'; btn.style.opacity = '0.7'; }
-      if(note){ note.textContent = "Thanks — we'll be in touch shortly."; note.style.color = 'var(--teal)'; }
+      if(note){ note.textContent = "Thanks — we'll be in touch shortly."; note.style.color = 'var(--burgundy)'; }
     });
   }
 })();
